@@ -1,7 +1,7 @@
+/* eslint-disable */
 import * as React from "react";
 import { IHelloWorldProps } from "./IHelloWorldProps";
 import { IHelloWorldState } from "./IHelloWorldState";
-import styles from "./HelloWorld.module.scss";
 
 export default class HelloWorld extends React.Component<
   IHelloWorldProps,
@@ -22,6 +22,9 @@ export default class HelloWorld extends React.Component<
         console.log("Naam gevonden: " + fullName);
         console.log("Volledige object:");
         console.log(user);
+        this.setState({
+          nameToShow: user.givenName + " " + user.surname!
+        })
       })
       .catch((error) => {
         console.log("Error retrieving user name " + error);
@@ -30,8 +33,8 @@ export default class HelloWorld extends React.Component<
 
   public render(): React.ReactElement<IHelloWorldProps> {
     return (
-      <section className={styles.test}>
-        test
+      <section>
+        <h1>{this.state.nameToShow}</h1>
       </section>
     );
   }
